@@ -4,7 +4,7 @@
 
     <groupId>com.github.tsijercic1</groupId>
     <artifactId>XMLParser</artifactId>
-    <version>1.2-SNAPSHOT</version>
+    <version>1.2</version>
     <name>XMLParser</name>
     <developers>
         <developer>
@@ -144,7 +144,7 @@
         <connection>scm:git:git://github.com/tsijercic1/XMLParser.git</connection>
         <developerConnection>scm:git:git@github.com:tsijercic1/XMLParser.git</developerConnection>
         <url>https://github.com/tsijercic1/XMLParser</url>
-        <tag>HEAD</tag>
+        <tag>1.2</tag>
     </scm>
 
     <distributionManagement>
