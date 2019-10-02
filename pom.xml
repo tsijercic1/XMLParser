@@ -5,7 +5,24 @@
     <groupId>com.github.tsijercic1</groupId>
     <artifactId>XMLParser</artifactId>
     <version>1.2-SNAPSHOT</version>
-
+    <name>XMLParser</name>
+    <developers>
+        <developer>
+            <name>Tarik Sijerčić</name>
+            <email>tsijercic1@etf.unsa.ba</email>
+            <organization>tsijercic1</organization>
+            <organizationUrl>https://github.com/tsijercic1</organizationUrl>
+            <timezone>GMT+2</timezone>
+        </developer>
+    </developers>
+    <description>XML Parser for students</description>
+    <url>https://www.github.com/tsijercic1/xmlparser</url>
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
     <profiles>
     <!-- GPG Signature on release -->
     <profile>
