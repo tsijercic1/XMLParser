@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<people>
+    <person name="Rob" surname="Smith">
+        <BirthCountry>
+            US
+        </BirthCountry>
+        <HomeCity>
+            New York
+        </HomeCity>
+        <age value="33"/>
+    </person>
+    <person name="Mark" surname="Salt">
+        <BirthCountry>
+            Germany
+        </BirthCountry>
+        <HomeCity>
+            Berlin
+        </HomeCity>
+        <age value="28"/>
+    </person>
+</people>
