@@ -10,19 +10,19 @@ class Tag{
         this.tag = tag;
         children = new ArrayList<>();
     }
-    public void addChild(Tag tag){
+    void addChild(Tag tag){
         children.add(tag);
     }
 
-    public String getTag() {
+    String getTag() {
         return tag;
     }
 
-    public ArrayList<Tag> getChildren() {
+    ArrayList<Tag> getChildren() {
         return children;
     }
 
-    public void setTag(String tag) {
+    void setTag(String tag) {
         this.tag = tag;
     }
 

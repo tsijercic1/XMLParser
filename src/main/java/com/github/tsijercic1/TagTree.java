@@ -4,18 +4,19 @@ import java.util.ArrayList;
 
 class TagTree {
     private ArrayList<String> tags;
-    private Tag root;
     private int currentIndex = 0;
-    public TagTree(ArrayList<String> tags) {
+
+    TagTree(ArrayList<String> tags) {
         this.tags = tags;
     }
-    public Tag getRoot(){
-        root = new Tag(tags.get(currentIndex));
+    Tag getRoot() throws InvalidXMLException {
+        Tag root = new Tag(tags.get(currentIndex));
         currentIndex++;
         root.setChildren(getChildren(tags));
         currentIndex = 0;
         return root;
     }
+
     private boolean isOpenningTag(String tag){
         return tag.matches("<[a-zA-Z].*");
     }
@@ -28,7 +29,7 @@ class TagTree {
     private boolean isSelfClosingTag(String tag){
         return tag.matches("<[a-zA-Z]+?.*?/>");
     }
-    private ArrayList<Tag> getChildren(ArrayList<String> tags){
+    private ArrayList<Tag> getChildren(ArrayList<String> tags) throws InvalidXMLException {
         ArrayList<Tag> children = new ArrayList<>();
         boolean isOpen = false;
         while(currentIndex < tags.size()){
@@ -47,6 +48,14 @@ class TagTree {
             }else if(isClosingTag(tags.get(currentIndex))){
                 if(isOpen){
                     isOpen = false;
+                    String name = children.get(children.size()-1).getName();
+                    String closingTag = tags.get(currentIndex);
+                    closingTag = closingTag.replace(name,"");
+                    closingTag = closingTag.replace("</","");
+                    closingTag = closingTag.replace(">","");
+                    closingTag = closingTag.trim();
+                    if(!closingTag.isEmpty())
+                        throw new InvalidXMLException("Crossing tags: \"" + name + " not properly closed!\"");
                     currentIndex++;
                 }
                 else{
