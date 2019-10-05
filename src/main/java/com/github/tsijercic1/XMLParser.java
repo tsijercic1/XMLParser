@@ -11,8 +11,7 @@ import java.util.TreeMap;
 public class XMLParser {
     private String document = "";
 
-    public XMLParser(String filepath){
-        try {
+    public XMLParser(String filepath) throws IOException {
             BufferedReader reader = new BufferedReader(new FileReader(filepath));
             StringBuilder builder = new StringBuilder();
             int t=0;
@@ -26,11 +25,8 @@ public class XMLParser {
             }
             document = builder.toString();
             reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
-    public Node getDocumentRootNode(){
+    public Node getDocumentRootNode() throws InvalidXMLException {
         document=excludeTags(document,"<!--","-->");
         document=excludeTags(document,"<?","?>");
         document = document.trim();
@@ -73,23 +69,19 @@ public class XMLParser {
         return map;
     }
 
-    private Node createStructure(String document) {
+    private Node createStructure(String document) throws InvalidXMLException {
         ArrayList<String> tags;
         Node node = null;
-        try {
-            tags = parseDocumentIntoArrayList(document);
-            TagTree tagTree = new TagTree(tags);
-            Tag root = tagTree.getRoot();
-            node = new Node();
-            node.setName(root.getName());
-            Map<String, String> attributes = getAttributesFromTag(root.getTag(), 1+node.getName().length());
-            attributes.forEach(node::addAttribute);
-            ArrayList<Node> nodes = getChildNodes(root);
-            for(Node element:nodes){
-                node.addChildNode(element);
-            }
-        } catch (InvalidXMLException e) {
-            e.printStackTrace();
+        tags = parseDocumentIntoArrayList(document);
+        TagTree tagTree = new TagTree(tags);
+        Tag root = tagTree.getRoot();
+        node = new Node();
+        node.setName(root.getName());
+        Map<String, String> attributes = getAttributesFromTag(root.getTag(), 1 + node.getName().length());
+        attributes.forEach(node::addAttribute);
+        ArrayList<Node> nodes = getChildNodes(root);
+        for(Node element:nodes){
+            node.addChildNode(element);
         }
         return node;
     }
