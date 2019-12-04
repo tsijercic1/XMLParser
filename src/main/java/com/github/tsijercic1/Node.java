@@ -31,6 +31,7 @@ public class Node {
     }
 
     public String getContent() {
+        if(getName().isEmpty()) return content;
         StringBuilder textContent = new StringBuilder();
         for (Node child : childNodes) {
             if(child.getName().equals("")){
@@ -62,6 +63,10 @@ public class Node {
         return nodes;
     }
 
+    public ArrayList<Node> getChildNodesWithContentAsChildNodes(){
+        return new ArrayList<>(childNodes);
+    }
+
     public ArrayList<Node> getChildNodes(String name){
         ArrayList<Node> nodes = new ArrayList<>(childNodes);
         nodes.removeIf(node -> !node.getName().equals(name) || name.equals(""));
@@ -86,5 +91,6 @@ public class Node {
     public Collection<String> getAttributeValues(){
         return new ArrayList<>(attributes.values());
     }
+
 
 }
